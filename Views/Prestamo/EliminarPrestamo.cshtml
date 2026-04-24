@@ -1,0 +1,19 @@
+@model LibreriaCesar.Models.Prestamo
+
+<h2>Eliminar Préstamo</h2>
+
+<h4>¿Seguro que deseas eliminar este préstamo?</h4>
+
+<div class="mb-3">
+    Usuario: @Model.Usuario.Nombre <br />
+    Libro: @Model.Libro.Titulo
+</div>
+
+<form asp-action="EliminarPrestamo" method="post">
+
+    <input type="hidden" asp-for="IdPrestamo"/>
+
+    <button type="submit" class="btn btn-danger">Eliminar</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+
+</form>

@@ -1,0 +1,48 @@
+@model IEnumerable<LibreriaCesar.Models.Usuario>
+
+@{
+    ViewData["Title"] = "Usuarios";
+}
+
+<div class="table-card">
+    <div class="table-header">
+        <div class="table-title">Listado de usuarios</div>
+        <a asp-action="CrearUsuario" asp-controller="Usuario" class="btn-primary">+ Nuevo usuario</a>
+    </div>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Usuario</th>
+            <th>Email</th>
+            <th>Teléfono</th>
+            <th>Fecha registro</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var usuario in Model)
+        {
+            <tr>
+                <td>
+                    <span class="avatar">
+                        @usuario.Nombre.Substring(0, 1)@usuario.Apellido.Substring(0, 1)
+                    </span>
+                    <strong>@usuario.Nombre @usuario.Apellido</strong>
+                </td>
+                <td style="color:var(--text-secondary)">@usuario.Email</td>
+                <td style="color:var(--text-secondary)">@usuario.Telefono</td>
+                <td style="color:var(--text-muted);font-size:12px">
+                    @usuario.FechaRegistro.ToString("dd/MM/yyyy")
+                </td>
+                <td>
+                    <div class="actions">
+                        <a asp-action="EditarUsuario" asp-route-id="@usuario.IdUsuario" class="btn-ghost">Editar</a>
+                        <a asp-action="EliminarUsuario" asp-route-id="@usuario.IdUsuario" class="btn-danger">Eliminar</a>
+                    </div>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>

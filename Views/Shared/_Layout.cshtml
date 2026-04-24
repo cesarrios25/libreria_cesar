@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Librería César</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <div class="layout">
+
+        <!-- SIDEBAR -->
+        <div class="sidebar">
+            <div class="brand">
+                <div class="brand-icon">📚</div>
+                <div class="brand-name">Librería César</div>
+                <div class="brand-sub">Administración</div>
+            </div>
+
+            <div class="nav-section">
+                <div class="nav-label">Principal</div>
+
+                <a class="nav-item" asp-controller="Usuario" asp-action="Index">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                        <path d="M8 8a3 3 0 100-6 3 3 0 000 6zm-5 6a5 5 0 0110 0H3z"/>
+                    </svg>
+                    Usuarios
+                </a>
+
+                <a class="nav-item" asp-controller="Libro" asp-action="Index">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                        <path d="M2 2a2 2 0 012-2h8a2 2 0 012 2v12a2 2 0 01-2 2H4a2 2 0 01-2-2V2zm2 0v12h8V2H4zm1 2h6v1H5V4zm0 2h6v1H5V6zm0 2h4v1H5V8z"/>
+                    </svg>
+                    Libros
+                </a>
+
+                <a class="nav-item" asp-controller="Prestamo" asp-action="Index">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                        <path d="M1 3a1 1 0 011-1h12a1 1 0 011 1v1H1V3zm0 3h14v7a1 1 0 01-1 1H2a1 1 0 01-1-1V6zm5 2v1h4V8H6z"/>
+                    </svg>
+                    Préstamos
+                </a>
+            </div>
+        </div>
+
+        <!-- MAIN -->
+        <div class="main">
+            <div class="topbar">
+                <div class="page-title">@ViewData["Title"]</div>
+                <div>
+                    <span class="badge-status">Sistema activo</span>
+                </div>
+            </div>
+
+            <div class="content">
+                @RenderBody()
+            </div>
+        </div>
+
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

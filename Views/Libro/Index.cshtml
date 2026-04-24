@@ -1,0 +1,52 @@
+@model IEnumerable<LibreriaCesar.Models.Libro>
+
+@{
+    ViewData["Title"] = "Libros";
+}
+
+<div class="table-card">
+    <div class="table-header">
+        <div class="table-title">Catálogo de libros</div>
+        <a asp-action="CrearLibro" asp-controller="Libro" class="btn-primary">+ Nuevo libro</a>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Título</th>
+                <th>Autor</th>
+                <th>Género</th>
+                <th>Año</th>
+                <th>Stock</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var libro in Model)
+            {
+                <tr>
+                    <td><strong>@libro.Titulo</strong></td>
+                    <td style="color:var(--text-secondary)">@libro.Autor</td>
+                    <td style="color:var(--text-muted);font-size:12px">@libro.Genero</td>
+                    <td style="color:var(--text-muted);font-size:12px">@libro.AnoPublicacion</td>
+                    <td>
+                        <div class="stock-bar">
+                            <div class="stock-track">
+                                <div class="stock-fill @(libro.StockDisponible == 0 ? "low" : "")"
+                                     style="width:@(libro.StockTotal > 0 ? (libro.StockDisponible * 100 / libro.StockTotal) : 0)%">
+                                </div>
+                            </div>
+                            <span class="stock-num">@libro.StockDisponible/@libro.StockTotal</span>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="actions">
+                            <a asp-action="EditarLibro" asp-route-id="@libro.IdLibro" class="btn-ghost">Editar</a>
+                            <a asp-action="EliminarLibro" asp-route-id="@libro.IdLibro" class="btn-danger">Eliminar</a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

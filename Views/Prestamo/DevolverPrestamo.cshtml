@@ -1,0 +1,45 @@
+@model LibreriaCesar.Models.Prestamo
+
+@{
+    ViewData["Title"] = "Devolver Libro";
+}
+
+<div class="form-card">
+    <div class="table-header" style="padding: 0 0 1.5rem 0; border-bottom: 1px solid var(--border); margin-bottom: 1.5rem;">
+        <div class="table-title">Devolver libro</div>
+        <a asp-action="Index" asp-controller="Prestamo" class="btn-ghost">← Volver</a>
+    </div>
+
+    <p style="color:var(--text-secondary);margin-bottom:1.5rem;">
+        ¿Confirmas la devolución de este libro? El stock se actualizará automáticamente.
+    </p>
+
+    <div style="background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.5rem;margin-bottom:1.5rem;">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+            <div>
+                <div class="form-label" style="margin-bottom:4px;">Usuario</div>
+                <div style="font-size:14px;font-weight:500;">@Model.Usuario.Nombre @Model.Usuario.Apellido</div>
+            </div>
+            <div>
+                <div class="form-label" style="margin-bottom:4px;">Libro</div>
+                <div style="font-size:14px;font-weight:500;">@Model.Libro.Titulo</div>
+            </div>
+            <div>
+                <div class="form-label" style="margin-bottom:4px;">Fecha préstamo</div>
+                <div style="font-size:14px;color:var(--text-secondary)">@Model.FechaPrestamo.ToString("dd/MM/yyyy")</div>
+            </div>
+            <div>
+                <div class="form-label" style="margin-bottom:4px;">Estado</div>
+                <span class="badge-active">Activo</span>
+            </div>
+        </div>
+    </div>
+
+    <form asp-action="DevolverPrestamo" asp-controller="Prestamo" method="post">
+        <input type="hidden" name="id" value="@Model.IdPrestamo" />
+        <div class="form-footer" style="padding-top:0;border-top:none;">
+            <button type="submit" class="btn-primary">Confirmar devolución</button>
+            <a asp-action="Index" asp-controller="Prestamo" class="btn-ghost">Cancelar</a>
+        </div>
+    </form>
+</div>

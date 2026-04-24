@@ -1,0 +1,45 @@
+@model LibreriaCesar.Models.Usuario
+
+@{
+    ViewData["Title"] = "Crear Usuario";
+}
+
+<div class="form-card">
+    <div class="table-header" style="padding: 0 0 1.5rem 0; border-bottom: 1px solid var(--border); margin-bottom: 1.5rem;">
+        <div class="table-title">Nuevo usuario</div>
+        <a asp-action="Index" asp-controller="Usuario" class="btn-ghost">← Volver</a>
+    </div>
+
+    <form asp-action="CrearUsuario" asp-controller="Usuario" method="post">
+        <div class="form-grid">
+            <div class="form-group">
+                <label class="form-label">Nombre</label>
+                <input asp-for="Nombre" class="form-input" placeholder="Ej: Carlos" />
+                <span asp-validation-for="Nombre" style="color:var(--danger);font-size:12px"></span>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Apellido</label>
+                <input asp-for="Apellido" class="form-input" placeholder="Ej: Ramírez" />
+                <span asp-validation-for="Apellido" style="color:var(--danger);font-size:12px"></span>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Email</label>
+                <input asp-for="Email" class="form-input" placeholder="correo@ejemplo.com" />
+                <span asp-validation-for="Email" style="color:var(--danger);font-size:12px"></span>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Teléfono</label>
+                <input asp-for="Telefono" class="form-input" placeholder="+57 300 000 0000" />
+                <span asp-validation-for="Telefono" style="color:var(--danger);font-size:12px"></span>
+            </div>
+        </div>
+
+        <div class="form-footer">
+            <button type="submit" class="btn-primary">Guardar usuario</button>
+            <a asp-action="Index" asp-controller="Usuario" class="btn-ghost">Cancelar</a>
+        </div>
+    </form>
+</div>

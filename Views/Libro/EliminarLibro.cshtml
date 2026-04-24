@@ -1,0 +1,53 @@
+@model LibreriaCesar.Models.Libro
+
+@{
+    ViewData["Title"] = "Eliminar Libro";
+}
+
+<div class="form-card">
+    <div class="table-header" style="padding: 0 0 1.5rem 0; border-bottom: 1px solid var(--border); margin-bottom: 1.5rem;">
+        <div class="table-title">Eliminar libro</div>
+        <a asp-action="Index" asp-controller="Libro" class="btn-ghost">← Volver</a>
+    </div>
+
+    <p style="color:var(--text-secondary);margin-bottom:1.5rem;">
+        ¿Estás seguro que deseas eliminar este libro? Esta acción no se puede deshacer.
+    </p>
+
+    <div style="background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-lg);padding:1.5rem;margin-bottom:1.5rem;">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+            <div>
+                <div class="form-label" style="margin-bottom:4px;">Título</div>
+                <div style="font-size:14px;font-weight:500;">@Model.Titulo</div>
+            </div>
+            <div>
+                <div class="form-label" style="margin-bottom:4px;">Autor</div>
+                <div style="font-size:14px;color:var(--text-secondary)">@Model.Autor</div>
+            </div>
+            <div>
+                <div class="form-label" style="margin-bottom:4px;">ISBN</div>
+                <div style="font-size:14px;color:var(--text-secondary)">@Model.ISBN</div>
+            </div>
+            <div>
+                <div class="form-label" style="margin-bottom:4px;">Género</div>
+                <div style="font-size:14px;color:var(--text-secondary)">@Model.Genero</div>
+            </div>
+            <div>
+                <div class="form-label" style="margin-bottom:4px;">Año publicación</div>
+                <div style="font-size:14px;color:var(--text-secondary)">@Model.AnoPublicacion</div>
+            </div>
+            <div>
+                <div class="form-label" style="margin-bottom:4px;">Stock</div>
+                <div style="font-size:14px;color:var(--text-secondary)">@Model.StockDisponible / @Model.StockTotal</div>
+            </div>
+        </div>
+    </div>
+
+    <form asp-action="EliminarLibro" asp-controller="Libro" method="post">
+        <input type="hidden" asp-for="IdLibro" />
+        <div class="form-footer" style="padding-top:0;border-top:none;">
+            <button type="submit" class="btn-danger">Sí, eliminar</button>
+            <a asp-action="Index" asp-controller="Libro" class="btn-ghost">Cancelar</a>
+        </div>
+    </form>
+</div>

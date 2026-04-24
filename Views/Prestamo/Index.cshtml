@@ -1,0 +1,57 @@
+@model IEnumerable<LibreriaCesar.Models.Prestamo>
+
+@{
+    ViewData["Title"] = "Préstamos";
+}
+
+<div class="table-card">
+    <div class="table-header">
+        <div class="table-title">Préstamos registrados</div>
+        <a asp-action="CrearPrestamo" asp-controller="Prestamo" class="btn-primary">+ Nuevo préstamo</a>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Usuario</th>
+                <th>Libro</th>
+                <th>Fecha préstamo</th>
+                <th>Fecha devolución</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var prestamo in Model)
+            {
+                <tr>
+                    <td><strong>@prestamo.Usuario.Nombre @prestamo.Usuario.Apellido</strong></td>
+                    <td style="color:var(--text-secondary)">@prestamo.Libro.Titulo</td>
+                    <td style="color:var(--text-muted);font-size:12px">@prestamo.FechaPrestamo.ToString("dd/MM/yyyy")</td>
+                    <td style="color:var(--text-muted);font-size:12px">
+                        @(prestamo.FechaDevolucion.HasValue ? prestamo.FechaDevolucion.Value.ToString("dd/MM/yyyy") : "—")
+                    </td>
+                    <td>
+                        @if (prestamo.FechaDevolucion == null)
+                        {
+                            <span class="badge-active">Activo</span>
+                        }
+                        else
+                        {
+                            <span class="badge-returned">Devuelto</span>
+                        }
+                    </td>
+                    <td>
+                        <div class="actions">
+                            @if (prestamo.FechaDevolucion == null)
+                            {
+                                <a asp-action="DevolverPrestamo" asp-route-id="@prestamo.IdPrestamo" class="btn-ghost">Devolver</a>
+                            }
+                            <a asp-action="EliminarPrestamo" asp-route-id="@prestamo.IdPrestamo" class="btn-danger">Eliminar</a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
